@@ -1,0 +1,34 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "la-badira",
+  "account_id": "15780e7671cf26656615e325996f1afa",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  "observability": { "enabled": true },
+
+  // D1 — create with: npx wrangler d1 create la-badira  → paste the id below
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "la-badira",
+      "database_id": "309b8435-a147-45ed-8465-5cabbfe45ccf",
+      "migrations_dir": "drizzle"
+    }
+  ],
+
+  // R2 — uploaded photos. Create with: npx wrangler r2 bucket create la-badira-media
+  "r2_buckets": [{ "binding": "MEDIA", "bucket_name": "la-badira-media" }],
+
+  // Cloudflare Images — next/image optimisation (AVIF/WebP) and upload normalisation
+  "images": { "binding": "IMAGES" },
+
+  // Non-secret configuration. Secrets: npx wrangler secret put <NAME> (see DEPLOYMENT.md)
+  "vars": {
+    "SITE_URL": "https://la-badira.abdelkafi-ahmed-techsup.workers.dev",
+    "WHATSAPP_PROVIDER": "click_to_chat",
+    "TRUST_PROXY": "true",
+    "VAPID_SUBJECT": "mailto:contact@labadira.com"
+  }
+}

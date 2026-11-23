@@ -1,0 +1,63 @@
+{
+  "name": "la-badira",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run typecheck && npm run lint && npm test",
+    "cf:build": "opennextjs-cloudflare build",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "wrangler d1 migrations apply la-badira --local",
+    "db:migrate:remote": "wrangler d1 migrations apply la-badira --remote",
+    "db:seed": "tsx --conditions react-server scripts/seed.mts",
+    "admin:create": "tsx --conditions react-server scripts/create-admin.mts",
+    "vapid": "node scripts/vapid.mjs",
+    "dev:totp": "tsx --conditions react-server scripts/dev-totp.mts"
+  },
+  "dependencies": {
+    "@block65/webcrypto-web-push": "^2.0.0",
+    "@opennextjs/cloudflare": "^1.20.18",
+    "drizzle-orm": "^0.45.4",
+    "gsap": "^3.15.1",
+    "image-size": "^2.1.0",
+    "lenis": "^1.3.27",
+    "motion": "^14.14.0",
+    "next": "16.4.6",
+    "otplib": "^13.6.0",
+    "qrcode": "^1.5.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@libsql/client": "^0.18.0",
+    "@tailwindcss/turbopack": "4.3.3",
+    "@types/node": "^24.19.2",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "dotenv": "^18.0.10",
+    "drizzle-kit": "^0.31.11",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "sharp": "^0.35.5",
+    "tailwindcss": "4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "^5",
+    "vitest": "^5.1.1",
+    "wrangler": "^4.166.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
