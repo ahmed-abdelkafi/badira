@@ -1,0 +1,1 @@
+ALTER TABLE `reservations` DROP COLUMN `confirmation_email_sent_at`;
